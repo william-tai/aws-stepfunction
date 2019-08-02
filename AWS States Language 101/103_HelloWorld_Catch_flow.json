@@ -1,0 +1,58 @@
+{ 
+    "StartAt": "HelloWorld",
+    "States": {
+        "HelloWorld": {
+         "Type": "Task",
+         "Resource": "ARN of one Lambda function",
+         "Retry": [
+             {
+                 "ErrorEquals": ["States.TaskFailed"],
+                 "IntervalSeconds": 1,
+                 "MaxAttempts": 2,
+                 "BackoffRate": 2.0
+             }
+         ],
+  
+         "Catch": [
+             {
+                 "ErrorEquals": ["AllYourBaseAreBelongToUs"],
+                 "Next": "CustomerErrorFallback"
+             },
+             {
+                 "ErrorEquals": ["States.TaskFailed"],
+                 "Next": "ReservedTypeFallback"
+             }
+         ],
+          
+         "Next": "Get Final Job Status"
+        },
+        "CustomerErrorFallback": {
+         "Type": "Fail",
+         "Cause": "CustomerErrorFallback...",
+         "Error": "CustomerErrorFallback..."
+       },
+       "ReservedTypeFallback": {
+         "Type": "Fail",
+         "Cause": "ReservedTypeFallback...",
+         "Error": "ReservedTypeFallback..."
+         
+       },
+ 
+       "Get Final Job Status": {
+         "Type": "Task",
+         "Resource": "ARN of one Lambda function",
+ 
+ 
+ 
+         "End": true
+       }
+       
+   
+ 
+ 
+ 
+ 
+ 
+    } 
+ }
+ 

@@ -1,0 +1,12 @@
+{
+  "Comment": "Hello World Example",
+  "StartAt": "HelloWorld",
+  "States": {
+    "HelloWorld": {
+      "Type": "Task",
+      "Resource" : "ARN of one Lambda function",
+      "End" : true   
+    }
+}
+
+}
