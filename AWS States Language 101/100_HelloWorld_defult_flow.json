@@ -1,0 +1,11 @@
+{
+  "Comment": "Hello World Example",
+  "StartAt": "HelloWorld",
+  "States": {
+    "HelloWorld": {
+      "Type": "Pass",
+      "End" : true   
+    }
+}
+
+}

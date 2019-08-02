@@ -1,0 +1,11 @@
+{
+    "Comment": "A Hello World example with a single activity",
+    "StartAt": "HelloWorld",
+    "States": {
+       "HelloWorld": {
+         "Type": "Task",
+         "Resource": "ARN of Activity from Step Function",
+         "End": true
+       }
+    }
+ }

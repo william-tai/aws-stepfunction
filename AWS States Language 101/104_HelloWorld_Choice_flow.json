@@ -1,0 +1,69 @@
+{ 
+    "Comment": "type: Private, value: 22",
+    "Comment": "https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html",
+    "StartAt": "ChoiceStateX",
+    "States": {
+        "ChoiceStateX": {
+            "Type": "Choice",
+            "Choices": [
+              {
+                  "Not": {
+                    "Variable": "$.type",
+                    "StringEquals": "Private"
+                  },
+                  "Next": "Public"
+              },
+              {
+                "Variable": "$.value",
+                "NumericEquals": 0,
+                "Next": "ValueIsZero"
+              },
+              {
+                "And": [
+                  {
+                    "Variable": "$.value",
+                    "NumericGreaterThanEquals": 20
+                  },
+                  {
+                    "Variable": "$.value",
+                    "NumericLessThan": 30
+                  }
+                ],
+                "Next": "ValueInTwenties"
+              }
+            ],
+            "Default": "DefaultState"
+          },
+          
+          "Public": {
+            "Type" : "Task",
+            "Resource": "ARN of one Lambda function",
+            "Next": "NextState"
+          },
+          
+          "ValueIsZero": {
+            "Type" : "Task",
+            "Resource": "ARN of one Lambda function",
+            "Next": "NextState"
+          },
+          
+          "ValueInTwenties": {
+            "Type" : "Task",
+            "Resource": "ARN of one Lambda function",
+            "Next": "NextState"
+          },
+          
+          "DefaultState": {
+            "Type": "Fail",
+            "Cause": "No Matches!"
+          },
+
+          "NextState": {
+            "Type": "Pass",
+            "End" : true   
+          }
+         
+       }
+     
+ }
+ 
